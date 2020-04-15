@@ -380,6 +380,7 @@ header {
 }
 
 h1 {
+  animation: opaque-then-fade-in 2s;
   color: #ffffe8;
   font-family: "Paytone One", sans-serif;
   font-size: 16vw;
@@ -392,11 +393,21 @@ h1 {
   width: 100%
 }
 
+@keyframes opaque-then-fade-in {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
 .fasterdisco-canvas#plasma {
   position: fixed;
-  height: 720px;
-  margin: 0 auto;
-  min-width: 1280px;
+  margin: 0;
   padding: 0;
   width: 100%;
   height: 100%;
