@@ -86,13 +86,13 @@
 
      function drawStill(canvasId, plasmaMap, colorMap) {
         var canvas = document.getElementById(canvasId);
-        var context = canvas.getContext( '2d' );
+        var context = canvas.getContext('2d', { alpha: 'false'});
         drawFrame(context, plasmaMap, colorMap);
      }
 
      function drawAnimated(canvasId, plasmaMap, colorMap) {
          var canvas = document.getElementById(canvasId);
-         var context = canvas.getContext( '2d' );
+         var context = canvas.getContext('2d', { alpha: 'false'});
 
          function animate() {
             drawFrame(context, plasmaMap, colorMap);
