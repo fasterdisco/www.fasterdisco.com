@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Faster Disco</title>
+    <meta name="description" content="Disco is not dead.">
+    <meta name="keywords" content="disco,faster">
+
+    <meta property="og:title" content="Faster Disco">
+    <meta property="og:description" content="Disco is not dead.">
+    <meta property="og:locale" content="fr_FR">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://fasterdisco.com/">
+
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="@faster_disco">
+    <meta name="twitter:title" content="Faster Disco">
+    <meta name="twitter:description" content="Disco is not dead.">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="https://fonts.googleapis.com/css?family=Paytone+One" rel="stylesheet">
+    <link rel="stylesheet" href="css/fasterdisco.css?20180930">
+
+    <link rel="manifest" href="favicons/manifest.json">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="theme-color" content="#400838">
+    <meta name="application-name" content="Faster Disco">
+    <meta name="msapplication-TileColor" content="#400838">
+    <meta name="msapplication-TileImage" content="favicons/mstile-144x144.png">
+    <meta name="msapplication-config" content="favicons/browserconfig.xml">
+    <link rel="apple-touch-icon" sizes="57x57" href="favicons/apple-touch-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="favicons/apple-touch-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="favicons/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="favicons/apple-touch-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="favicons/apple-touch-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="favicons/apple-touch-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="favicons/apple-touch-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="favicons/apple-touch-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="favicons/apple-touch-icon-180x180.png">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Faster Disco">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="favicons/android-chrome-192x192.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicons/favicon-16x16.png">
+    <link rel="shortcut icon" href="favicons/favicon.ico">
+    <link rel="icon" type="image/png" sizes="228x228" href="favicons/coast-228x228.png">
+    <link rel="apple-touch-startup-image" media="(device-width: 320px) and (device-height: 480px) and (-webkit-device-pixel-ratio: 1)" href="favicons/apple-touch-startup-image-320x460.png">
+    <link rel="apple-touch-startup-image" media="(device-width: 320px) and (device-height: 480px) and (-webkit-device-pixel-ratio: 2)" href="favicons/apple-touch-startup-image-640x920.png">
+    <link rel="apple-touch-startup-image" media="(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2)" href="favicons/apple-touch-startup-image-640x1096.png">
+    <link rel="apple-touch-startup-image" media="(device-width: 375px) and (device-height: 667px) and (-webkit-device-pixel-ratio: 2)" href="favicons/apple-touch-startup-image-750x1294.png">
+    <link rel="apple-touch-startup-image" media="(device-width: 414px) and (device-height: 736px) and (orientation: landscape) and (-webkit-device-pixel-ratio: 3)" href="favicons/apple-touch-startup-image-1182x2208.png">
+    <link rel="apple-touch-startup-image" media="(device-width: 414px) and (device-height: 736px) and (orientation: portrait) and (-webkit-device-pixel-ratio: 3)" href="favicons/apple-touch-startup-image-1242x2148.png">
+    <link rel="apple-touch-startup-image" media="(device-width: 768px) and (device-height: 1024px) and (orientation: landscape) and (-webkit-device-pixel-ratio: 1)" href="favicons/apple-touch-startup-image-748x1024.png">
+    <link rel="apple-touch-startup-image" media="(device-width: 768px) and (device-height: 1024px) and (orientation: portrait) and (-webkit-device-pixel-ratio: 1)" href="favicons/apple-touch-startup-image-768x1004.png">
+    <link rel="apple-touch-startup-image" media="(device-width: 768px) and (device-height: 1024px) and (orientation: landscape) and (-webkit-device-pixel-ratio: 2)" href="favicons/apple-touch-startup-image-1496x2048.png">
+    <link rel="apple-touch-startup-image" media="(device-width: 768px) and (device-height: 1024px) and (orientation: portrait) and (-webkit-device-pixel-ratio: 2)" href="favicons/apple-touch-startup-image-1536x2008.png">
+  </head>
+  <body>
+    <canvas class="fasterdisco-canvas" id="plasma" width="320" height="180"></canvas>
+    <header>
+      <h1>Faster Disco</h1>
+      <h2>+&nbsp;Guests +&nbsp;Surprises</h2>
+    </header>
+    <script>
+      // https://www.bidouille.org/prog/plasma
+      function drawFrame(context, plasmaMap, colorMap) {
+      var time = new Date().getTime() * 0.0025;
+
+      var w = context.canvas.width;
+      var h = context.canvas.height;
+      var imageData = context.getImageData(0, 0, w, h);
+      var px = imageData.data;
+
+      var kx = w/h;
+      for(var y=0; y < h; y++) {
+         var yy = y/h-.5;
+         for(var x=0; x < w; x++) {
+            var xx = kx*x/w-kx/2;
+            var v = plasmaMap(xx, yy, time);
+            colorMap(px, (y*w+x)*8, v);
+         }
+      }
+      context.putImageData(imageData, 0, 0);
+     }
+
+     function drawStill(canvasId, plasmaMap, colorMap) {
+        var canvas = document.getElementById(canvasId);
+        var context = canvas.getContext( '2d' );
+        drawFrame(context, plasmaMap, colorMap);
+     }
+
+     function drawAnimated(canvasId, plasmaMap, colorMap) {
+         var canvas = document.getElementById(canvasId);
+         var context = canvas.getContext( '2d' );
+
+         function animate() {
+            drawFrame(context, plasmaMap, colorMap);
+            window.requestAnimationFrame(animate);
+         }
+         animate();
+     }
+
+     function plasma(x, y, time) {
+           var v = 0;
+           v += Math.sin((x*10+time));
+           v += Math.sin((y*10+time)/2.0);
+           v += Math.sin((x*10+y*10+time)/2.0);
+           var cx = x + .5 * Math.sin(time/5.0);
+           var cy = y + .5 * Math.cos(time/3.0);
+           v += Math.sin(Math.sqrt(100*(cx*cx+cy*cy)+1)+time);
+           v = v/2.0;
+           return v;
+      }
+
+     function fasterDiscoColorMap(px, offset, v) {
+       px[offset  ] = 255;
+       px[offset+1] = 255*(.5+.25*Math.sin(Math.PI*v+2*Math.PI/3))
+       px[offset+2] = 255*(.5+.5*Math.sin(Math.PI*v));
+       px[offset+3] = 128;
+       px[offset+4] = 192*(.5+.5*Math.cos(Math.PI*v));
+       px[offset+5] = 192*(.5+.33*Math.sin(Math.PI*v+2*Math.PI/3))
+       px[offset+6] = 255*(.5-.5*Math.sin(Math.PI*v));
+       px[offset+7] = 92;
+     }
+
+     drawAnimated("plasma", plasma, fasterDiscoColorMap);
+    </script>
+  </body>
+</html>
