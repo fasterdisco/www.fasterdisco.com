@@ -37,7 +37,7 @@ h1 {
   margin: 0;
   padding: 0;
   text-align: center;
-  text-shadow: #3B2E36 1px 4px, #D6BB7A 2px 8px, #e06830 3px 12px, #802078 4px 16px;
+  text-shadow: #3B2E36 .25vw .5vw, #D6BB7A .5vw 1vw, #e06830 .75vw 1.5vw, #802078 1vw 2vw;
   width: 100%
 }
 
