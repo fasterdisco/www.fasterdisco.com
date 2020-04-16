@@ -16,6 +16,18 @@ jobs:
         with:
           node-version: 12.x
 
+      - name: Cache NPM modules
+        uses: actions/cache@v1
+        env:
+          cache-name: cache-node-modules
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-deploy-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-deploy-${{ env.cache-name }}-
+            ${{ runner.os }}-deploy-
+            ${{ runner.os }}-
+
       - name: Install NPM dependencies
         run: npm install
 
