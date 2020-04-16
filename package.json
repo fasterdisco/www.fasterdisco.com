@@ -1,0 +1,33 @@
+{
+  "name": "fasterdisco.github.io",
+  "version": "1.0.0",
+  "description": "Faster Disco Website",
+  "scripts": {
+    "build": "npm run cleanup && webpack",
+    "cleanup": "rimraf build && mkdirp build",
+    "lint": "eslint --cache .eslintrc.js webpack.config.js src/*.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fasterdisco/fasterdisco.github.io.git"
+  },
+  "keywords": [
+    "disco"
+  ],
+  "author": "Eric Redon <eric.redon@coox.org> (https://coox.org)",
+  "license": "MIT",
+  "homepage": "https://www.fasterdisco.com/",
+  "devDependencies": {
+    "css-loader": "3.5.2",
+    "eslint": "6.8.0",
+    "html-webpack-plugin": "4.2.0",
+    "mini-css-extract-plugin": "0.9.0",
+    "mkdirp": "1.0.4",
+    "normalize.css": "8.0.1",
+    "react-dev-utils": "10.2.1",
+    "rimraf": "3.0.2",
+    "webpack": "4.42.1",
+    "webpack-cli": "3.3.11"
+  }
+}

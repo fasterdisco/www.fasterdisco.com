@@ -1,0 +1,2 @@
+# .eslintrc.js file is ignored by default. A negated ignore pattern must be used to override.
+!.eslintrc.js
