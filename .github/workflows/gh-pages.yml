@@ -8,21 +8,21 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # Checkout repository under $GITHUB_WORKSPACE
-      - uses: actions/checkout@v2
+      - name: Checkout repository
+        uses: actions/checkout@v2
 
       - name: Setup Node.js environment
         uses: actions/setup-node@v1
         with:
           node-version: 12.x
 
-      - name: Install dependencies
+      - name: Install NPM dependencies
         run: npm install
 
       - name: Build
         run: npm run build
 
-      - name: Deploy
+      - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
