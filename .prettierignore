@@ -1,0 +1,4 @@
+# By default, Prettier CLI will ignore files located in `node_modules` directory
+# https://prettier.io/docs/en/cli.html#--with-node-modules
+
+build/
