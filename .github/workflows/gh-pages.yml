@@ -28,6 +28,14 @@ jobs:
             ${{ runner.os }}-deploy-
             ${{ runner.os }}-
 
+      - name: Cache favicons
+        uses: actions/cache@v1
+        env:
+          cache-name: favicons-cache
+        with:
+          path: ${{ env.GITHUB_WORKSPACE }}/.wwp-cache
+          key: ${{ runner.os }}-deploy-${{ env.cache-name }}-${{ hashFiles('webpack.config.js') }}-${{ hashFiles('src/favicon-4096x4096.png') }}
+
       - name: Install NPM dependencies
         run: npm install
 
