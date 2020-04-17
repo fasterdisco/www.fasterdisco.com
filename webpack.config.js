@@ -9,12 +9,14 @@ module.exports = {
     path: `${__dirname}/build`,
     filename: 'index.js',
   },
+
   plugins: [
     new HtmlWebpackPlugin({
       template: 'src/index.html',
     }),
     new MiniCssExtractPlugin(),
   ],
+
   module: {
     rules: [
       {
