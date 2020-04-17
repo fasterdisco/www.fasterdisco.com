@@ -19,7 +19,7 @@ jobs:
       - name: Cache NPM modules
         uses: actions/cache@v1
         env:
-          cache-name: cache-node-modules
+          cache-name: node-modules-cache
         with:
           path: ~/.npm
           key: ${{ runner.os }}-deploy-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
