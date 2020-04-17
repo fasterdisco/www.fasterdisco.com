@@ -23,11 +23,11 @@ module.exports = {
   },
 
   plugins: [
+    // https://github.com/jantimon/html-webpack-plugin#options
     new HtmlWebpackPlugin({
       template: 'src/index.html',
-      minify: {
-        collapseWhitespace: false,
-      },
+      scriptLoading: 'defer',
+      hash: true,
     }),
 
     new MiniCssExtractPlugin(),
