@@ -27,11 +27,7 @@ module.exports = {
 
   overrides: [
     {
-      files: [
-        '.eslintrc.js',
-        'prettier.config.js',
-        'webpack.config.js',
-      ],
+      files: ['.eslintrc.js', 'prettier.config.js', 'webpack.config.js'],
       env: {
         // Disable support of browser global variables
         browser: false,

@@ -4,7 +4,8 @@
   #831069
 */
 
-html, body {
+html,
+body {
   background: #400838;
   height: 100%;
   margin: 0;
@@ -24,21 +25,21 @@ header {
   padding: 0;
   position: absolute;
   height: 100%;
-  width: 100%
+  width: 100%;
 }
 
 h1 {
   animation: opaque-then-fade-in 2s;
   color: #ffffe8;
-  font-family: "Paytone One", sans-serif;
+  font-family: 'Paytone One', sans-serif;
   font-size: 16vw;
-  letter-spacing: -.05em;
-  line-height: .85em;
+  letter-spacing: -0.05em;
+  line-height: 0.85em;
   margin: 0;
   padding: 0;
   text-align: center;
-  text-shadow: #3B2E36 .25vw .5vw, #D6BB7A .5vw 1vw, #e06830 .75vw 1.5vw, #802078 1vw 2vw;
-  width: 100%
+  text-shadow: #3b2e36 0.25vw 0.5vw, #d6bb7a 0.5vw 1vw, #e06830 0.75vw 1.5vw, #802078 1vw 2vw;
+  width: 100%;
 }
 
 @keyframes opaque-then-fade-in {
