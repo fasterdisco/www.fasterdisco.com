@@ -29,8 +29,8 @@ jobs:
         env:
           cache-name: favicons-cache
         with:
-          path: ${{ github.workspace }}/.wwp-cache
-          key: ${{ runner.os }}-deploy-${{ env.cache-name }}
+          path: ${{ github.workspace }}/.favicons-cache
+          key: ${{ runner.os }}-deploy-${{ env.cache-name }}-{{ hashFiles('.favicons-cache/*.json') }}
 
       - name: Install NPM dependencies
         run: npm install

@@ -35,7 +35,7 @@ module.exports = {
       logo: `${__dirname}/src/favicon-4096x4096.png`,
 
       // Enable caching and specify the path to store cached data
-      cache: `${__dirname}/.wwp-cache`,
+      cache: `${__dirname}/.favicons-cache`,
 
       // Configure favicons
       // https://github.com/itgalaxy/favicons#usage
