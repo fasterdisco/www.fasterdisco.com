@@ -34,7 +34,7 @@ jobs:
           cache-name: favicons-cache
         with:
           path: ${{ github.workspace }}/.favicons-cache
-          key: ${{ env.cache-name }}-${{ hashFiles('.favicons-cache/*.json') }}
+          key: ${{ env.cache-name }}-${{ github.sha }}
           restore-keys: |
             ${{ env.cache-name }}-
 
