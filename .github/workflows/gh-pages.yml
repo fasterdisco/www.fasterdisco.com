@@ -23,6 +23,10 @@ jobs:
         with:
           path: ~/.npm
           key: ${{ runner.os }}-deploy-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-deploy-${{ env.cache-name }}-
+            ${{ runner.os }}-deploy-
+            ${{ runner.os }}-
 
       - name: Cache favicons
         uses: actions/cache@v1
@@ -30,7 +34,9 @@ jobs:
           cache-name: favicons-cache
         with:
           path: ${{ github.workspace }}/.favicons-cache
-          key: ${{ runner.os }}-deploy-${{ env.cache-name }}-${{ hashFiles('.favicons-cache/*.json') }}
+          key: ${{ env.cache-name }}-${{ hashFiles('.favicons-cache/*.json') }}
+          restore-keys: |
+            ${{ env.cache-name }}-
 
       - name: Install NPM dependencies
         run: npm install
