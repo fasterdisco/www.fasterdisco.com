@@ -1,6 +1,6 @@
 import 'normalize.css';
 import './fasterdisco.css';
 
-import { colorMap, drawAnimated, plasmaMap } from './plasma';
+import { drawAnimatedPlasma } from './plasma';
 
-drawAnimated('plasma', plasmaMap, colorMap);
+drawAnimatedPlasma('plasma');
