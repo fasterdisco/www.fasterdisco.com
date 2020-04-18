@@ -25,6 +25,9 @@ function calculatePlasmaValue(x, y, time) {
 }
 
 function apply32BitColors(pixelData, offset, plasmaValue) {
+  // Apply a 32-bit color with features:
+  // - Always opaque (alpha: 0xff)
+  // - Oscillating between #000000 (black) and #a000c0 (purple)
   const purpleShade = 0.5 - 0.5 * Math.sin(Math.PI * plasmaValue);
   pixelData[offset] = isPlatformLittleEndian
     ? 0xff000000 | ((0xc0 * purpleShade) << 16) | (0xa0 * purpleShade)
