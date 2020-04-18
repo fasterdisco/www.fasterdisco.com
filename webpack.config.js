@@ -10,9 +10,6 @@ const fasterDiscoColors = {
   pink: '#e2388e',
 };
 
-const buildSemanticVersionFromDate = (date) =>
-  `${date.getUTCFullYear()}.${date.getUTCMonth()}.${date.getUTCDate()}`;
-
 module.exports = {
   mode: process.env.NODE_ENV === 'production' ? 'production' : 'development',
 
@@ -51,7 +48,6 @@ module.exports = {
         background: fasterDiscoColors.purple,
         theme_color: fasterDiscoColors.purple,
         display: 'standalone',
-        version: buildSemanticVersionFromDate(new Date()),
       },
     }),
   ],
