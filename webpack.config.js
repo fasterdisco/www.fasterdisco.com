@@ -1,5 +1,7 @@
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 const FaviconsWebpackPlugin = require('favicons-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const HtmlWebpackTagsPlugin = require('html-webpack-tags-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 const fasterDiscoColors = {
@@ -20,11 +22,26 @@ module.exports = {
   },
 
   plugins: [
+    // https://webpack.js.org/plugins/copy-webpack-plugin/
+    new CopyWebpackPlugin([{ from: 'src/static', to: 'static/' }]),
+
     // https://github.com/jantimon/html-webpack-plugin#options
     new HtmlWebpackPlugin({
       template: 'src/index.html',
       scriptLoading: 'defer',
       hash: true,
+    }),
+
+    // https://github.com/jharris4/html-webpack-tags-plugin
+    new HtmlWebpackTagsPlugin({
+      metas: [
+        {
+          path: 'static/fasterdisco-social-1200x630.png',
+          attributes: {
+            property: 'og:image',
+          },
+        },
+      ],
     }),
 
     new MiniCssExtractPlugin(),
