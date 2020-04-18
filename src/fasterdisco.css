@@ -17,7 +17,7 @@ body {
   position: relative;
 }
 
-header {
+.fasterdisco-hero-header {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -28,7 +28,7 @@ header {
   width: 100%;
 }
 
-h1 {
+.fasterdisco-hero-header-h1 {
   animation: opaque-then-fade-in 2s;
   color: #ffffe8;
   font-family: 'Paytone One', sans-serif;
