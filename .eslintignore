@@ -1,2 +1,9 @@
+# https://eslint.org/docs/user-guide/configuring#eslintignore
+
+# /node_modules/* and /bower_components/* in the project root are ignored by default
+
 # .eslintrc.js file is ignored by default. A negated ignore pattern must be used to override.
 !.eslintrc.js
+
+.favicons-webpack-plugin-cache/
+build/

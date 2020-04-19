@@ -7,7 +7,7 @@
     "check-format": "prettier --check .",
     "cleanup": "rimraf build && mkdirp build",
     "format": "prettier --write .",
-    "lint": "eslint --cache .eslintrc.js prettier.config.js webpack.config.js src/*.js",
+    "lint": "eslint --cache .",
     "localdev": "webpack-dev-server",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
