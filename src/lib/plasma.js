@@ -1,7 +1,7 @@
 import { isPlatformLittleEndian } from './platform-endianness';
 
-/*! https://www.bidouille.org/prog/plasma */
-/*! https://hacks.mozilla.org/2011/12/faster-canvas-pixel-manipulation-with-typed-arrays/ */
+/*! Original plasma code: https://www.bidouille.org/prog/plasma */
+/*! Inspiration for conversion to 32-bit arrays: https://hacks.mozilla.org/2011/12/faster-canvas-pixel-manipulation-with-typed-arrays/ */
 
 // 32-bit color byte order cheat sheet:
 // - Little endian platform: alpha blue green red
@@ -41,23 +41,23 @@ function drawPlasmaFrame(context) {
   const h = context.canvas.height;
   const kx = w / h;
 
-  const imageData = context.getImageData(0, 0, w, h);
-
-  const buf = new ArrayBuffer(imageData.data.length);
-  const data = new Uint32Array(buf);
-  data.fill(canvas32BitBackgroundColor);
+  const pixelData = new Uint32Array(w * h);
+  pixelData.fill(canvas32BitBackgroundColor);
 
   for (let y = 0; y < h; y += 2) {
     const yy = y / h - 0.5;
     for (let x = 0; x < w; x++) {
       const xx = (kx * x) / w - kx / 2;
       const plasmaValue = calculatePlasmaValue(xx, yy, time);
-      apply32BitColors(data, y * w + x, plasmaValue);
+      apply32BitColors(pixelData, y * w + x, plasmaValue);
     }
   }
 
-  imageData.data.set(new Uint8ClampedArray(buf));
-  context.putImageData(imageData, 0, 0);
+  context.putImageData(
+    new ImageData(new Uint8ClampedArray(pixelData.buffer), w, h),
+    0,
+    0
+  );
 }
 
 function initializeContext(canvasId) {
