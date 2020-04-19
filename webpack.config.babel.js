@@ -16,6 +16,10 @@ const buildPath = path.resolve(__dirname, 'build');
 
 const isProductionBuild = process.env.NODE_ENV === 'production';
 
+const publicOrigin = isProductionBuild
+  ? 'https://www.fasterdisco.com/'
+  : 'http://localhost:8080/';
+
 const buildConfig = {
   mode: isProductionBuild ? 'production' : 'development',
 
@@ -43,7 +47,7 @@ const buildConfig = {
       metas: [
         {
           path: 'static/fasterdisco-social-1200x630.png',
-          publicPath: 'https://www.fasterdisco.com/',
+          publicPath: publicOrigin,
           attributes: {
             property: 'og:image',
           },
