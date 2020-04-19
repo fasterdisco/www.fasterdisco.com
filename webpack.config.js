@@ -46,6 +46,7 @@ const buildConfig = {
       metas: [
         {
           path: 'static/fasterdisco-social-1200x630.png',
+          publicPath: 'https://www.fasterdisco.com/',
           attributes: {
             property: 'og:image',
           },
