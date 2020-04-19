@@ -58,26 +58,10 @@ jobs:
       - name: Install NPM dependencies
         run: npm install
 
-      - name: MTIME DEBUG A0a
-        run: if [ -d ${{ github.workspace }}/.favicons-webpack-plugin-cache ]; then ls -la ${{ github.workspace }}/.favicons-webpack-plugin-cache; fi
-
-      - name: MTIME DEBUG A0b
-        run: if [ -d ${{ github.workspace }}/.favicons-webpack-plugin-cache ]; then cut ${{ github.workspace }}/.favicons-webpack-plugin-cache/* -b 1-2048; fi
-
-      - name: MTIME DEBUG B0a
-        run: stat --format='%.Y' ${{ github.workspace }}/src/favicons/favicon-4096x4096.png ${{ github.workspace }}/node_modules/cache-loader/dist/cjs.js ${{ github.workspace }}/node_modules/favicons-webpack-plugin/src/loader.js
-
       # Next two steps aim to keep file modification timestamps of all files
       # identical from one deploy to the next, to have webpack consistently
       # determine whether it should preserve or invalidate its cache.
       # https://github.com/webpack/webpack/issues/10707#issuecomment-613245056
-
-      - name: DEBUG CHANGE MTIME OF GIT FILES
-        run: |
-          git ls-tree -r --name-only HEAD | while read filename; do
-            echo "$(git log -1 --pretty="format:%ad" --date=raw $filename)" "$filename"
-            echo "touch -mt" "$(git log -1 --pretty="format:%ad" --date=format:%Y%m%d%H%M.%S $filename)" "$filename"
-          done
 
       - name: Change mtime of git managed file to respective their last commit time
         run: |
@@ -85,30 +69,15 @@ jobs:
             touch -mt "$(git log -1 --pretty="format:%ad" --date=format:%Y%m%d%H%M.%S $filename)" "$filename"
           done
 
-      - name: DEBUG CHANGE MTIME OF PACKAGE LOCK
-        run: |
-          echo "$(git log -1 --pretty="format:%ad" --date=raw package-lock.json)"
-          package_lock_mtime=$(git log -1 --pretty="format:%ad" --date=format:%Y%m%d%H%M.%S package-lock.json)
-          echo "${package_lock_mtime}"
-
       - name: Change mtime of files under node_modules to last commit time of package-lock.json
         run: |
           package_lock_mtime=$(git log -1 --pretty="format:%ad" --date=format:%Y%m%d%H%M.%S package-lock.json)
           find node_modules -type f -print0 | xargs -0 touch -mt $package_lock_mtime
 
-      - name: MTIME DEBUG B1a
-        run: stat --format='%.Y' ${{ github.workspace }}/src/favicons/favicon-4096x4096.png ${{ github.workspace }}/node_modules/cache-loader/dist/cjs.js ${{ github.workspace }}/node_modules/favicons-webpack-plugin/src/loader.js
-
       - name: Build
         run: npm run build
         env:
           NODE_ENV: production
-
-      - name: MTIME DEBUG A1a
-        run: if [ -d ${{ github.workspace }}/.favicons-webpack-plugin-cache ]; then ls -la ${{ github.workspace }}/.favicons-webpack-plugin-cache; fi
-
-      - name: MTIME DEBUG A1b
-        run: if [ -d ${{ github.workspace }}/.favicons-webpack-plugin-cache ]; then cut ${{ github.workspace }}/.favicons-webpack-plugin-cache/* -b 1-2048; fi
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
