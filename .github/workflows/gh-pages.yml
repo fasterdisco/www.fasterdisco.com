@@ -42,10 +42,10 @@ jobs:
         run: npm install
 
       - name: MTIME DEBUG A0a
-        run: ls -la ${{ github.workspace }}/.favicons-webpack-plugin-cache
+        run: if [ -d ${{ github.workspace }}/.favicons-webpack-plugin-cache ]; then ls -la ${{ github.workspace }}/.favicons-webpack-plugin-cache; fi
 
       - name: MTIME DEBUG A0b
-        run: cut ${{ github.workspace }}/.favicons-webpack-plugin-cache/* -b 1-2048
+        run: if [ -d ${{ github.workspace }}/.favicons-webpack-plugin-cache ]; then cut ${{ github.workspace }}/.favicons-webpack-plugin-cache/* -b 1-2048; fi
 
       - name: MTIME DEBUG B0a
         run: stat --format='%.Y' ${{ github.workspace }}/src/favicons/favicon-4096x4096.png ${{ github.workspace }}/node_modules/cache-loader/dist/cjs.js ${{ github.workspace }}/node_modules/favicons-webpack-plugin/src/loader.js
@@ -75,10 +75,10 @@ jobs:
           NODE_ENV: production
 
       - name: MTIME DEBUG A1a
-        run: ls -la ${{ github.workspace }}/.favicons-webpack-plugin-cache
+        run: if [ -d ${{ github.workspace }}/.favicons-webpack-plugin-cache ]; then ls -la ${{ github.workspace }}/.favicons-webpack-plugin-cache; fi
 
       - name: MTIME DEBUG A1b
-        run: cut ${{ github.workspace }}/.favicons-webpack-plugin-cache/* -b 1-2048
+        run: if [ -d ${{ github.workspace }}/.favicons-webpack-plugin-cache ]; then cut ${{ github.workspace }}/.favicons-webpack-plugin-cache/* -b 1-2048; fi
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
