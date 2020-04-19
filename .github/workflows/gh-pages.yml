@@ -28,24 +28,24 @@ jobs:
             ${{ runner.os }}-deploy-
             ${{ runner.os }}-
 
-      - name: Cache favicons
+      - name: Cache favicons build
         uses: actions/cache@v1
         env:
-          cache-name: favicons-cache
+          cache-name: favicons-webpack-plugin-cache
         with:
-          path: ${{ github.workspace }}/.favicons-cache
-          key: ${{ runner.os }}-deploy-${{ env.cache-name }}-${{ github.sha }}
+          path: ${{ github.workspace }}/.favicons-webpack-plugin-cache
+          key: deploy-${{ env.cache-name }}-${{ github.sha }}
           restore-keys: |
-            ${{ runner.os }}-deploy-${{ env.cache-name }}-
+            deploy-${{ env.cache-name }}-
 
       - name: Install NPM dependencies
         run: npm install
 
       - name: MTIME DEBUG A0a
-        run: ls -la ${{ github.workspace }}/.favicons-cache
+        run: ls -la ${{ github.workspace }}/.favicons-webpack-plugin-cache
 
       - name: MTIME DEBUG A0b
-        run: cut ${{ github.workspace }}/.favicons-cache/* -b 1-2048
+        run: cut ${{ github.workspace }}/.favicons-webpack-plugin-cache/* -b 1-2048
 
       - name: MTIME DEBUG B0a
         run: stat --format='%.Y' ${{ github.workspace }}/src/favicons/favicon-4096x4096.png ${{ github.workspace }}/node_modules/cache-loader/dist/cjs.js ${{ github.workspace }}/node_modules/favicons-webpack-plugin/src/loader.js
@@ -75,10 +75,10 @@ jobs:
           NODE_ENV: production
 
       - name: MTIME DEBUG A1a
-        run: ls -la ${{ github.workspace }}/.favicons-cache
+        run: ls -la ${{ github.workspace }}/.favicons-webpack-plugin-cache
 
       - name: MTIME DEBUG A1b
-        run: cut ${{ github.workspace }}/.favicons-cache/* -b 1-2048
+        run: cut ${{ github.workspace }}/.favicons-webpack-plugin-cache/* -b 1-2048
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3

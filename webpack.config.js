@@ -62,7 +62,7 @@ const buildConfig = {
       logo: path.resolve(srcPath, 'favicons', 'favicon-4096x4096.png'),
 
       // Enable caching and specify the path to store cached data
-      cache: path.resolve(__dirname, '.favicons-cache'),
+      cache: path.resolve(__dirname, '.favicons-webpack-plugin-cache'),
 
       prefix: 'favicons',
 

@@ -1,4 +1,4 @@
-.favicons-cache/
+.favicons-webpack-plugin-cache/
 build/
 
 ###> github/gitignore/Global/macOS.gitignore ###
