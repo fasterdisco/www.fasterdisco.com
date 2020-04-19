@@ -3,8 +3,8 @@ module.exports = {
   env: {
     // Enable support of all ECMAScript 2020 globals
     es2020: true,
-    // Enable support of browser global variables
-    browser: true,
+    // Enable support of Node.js global variables and Node.js scoping
+    node: true,
   },
 
   // https://eslint.org/docs/user-guide/configuring#specifying-parser-options
@@ -27,12 +27,12 @@ module.exports = {
 
   overrides: [
     {
-      files: ['.eslintrc.js', 'prettier.config.js', 'webpack.config.js'],
+      files: ['src/**/*.js'],
       env: {
-        // Disable support of browser global variables
-        browser: false,
-        // Enable support of Node.js global variables and Node.js scoping
-        node: true,
+        // Enable support of browser global variables
+        browser: true,
+        // Disable support of Node.js global variables and Node.js scoping
+        node: false,
       },
     },
   ],
