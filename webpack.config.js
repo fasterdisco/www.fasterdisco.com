@@ -54,6 +54,8 @@ module.exports = {
       // Enable caching and specify the path to store cached data
       cache: `${__dirname}/.favicons-cache`,
 
+      prefix: 'favicons/',
+
       // Configure favicons
       // https://github.com/itgalaxy/favicons#usage
       favicons: {
