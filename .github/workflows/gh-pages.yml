@@ -42,15 +42,13 @@ jobs:
         run: npm install
 
       - name: MTIME DEBUG A0a
-        run: |
-          ls -la ${{ github.workspace }}/.favicons-cache
+        run: ls -la ${{ github.workspace }}/.favicons-cache
 
       - name: MTIME DEBUG A0b
-        run: |
-          cut ${{ github.workspace }}/.favicons-cache/* -b 1-2048
+        run: cut ${{ github.workspace }}/.favicons-cache/* -b 1-2048
 
       - name: MTIME DEBUG B0a
-          gstat --format='%.Y' ${{ github.workspace }}/src/favicons/favicon-4096x4096.png ${{ github.workspace }}/node_modules/cache-loader/dist/cjs.js ${{ github.workspace }}/node_modules/favicons-webpack-plugin/src/loader.js
+        run: gstat --format='%.Y' ${{ github.workspace }}/src/favicons/favicon-4096x4096.png ${{ github.workspace }}/node_modules/cache-loader/dist/cjs.js ${{ github.workspace }}/node_modules/favicons-webpack-plugin/src/loader.js
 
       # Next two steps aim to keep file modification timestamps of all files
       # identical from one deploy to the next, to have Webpack consistently
@@ -69,7 +67,7 @@ jobs:
           find node_modules -type f -print0 | xargs -0 touch -mt $package_lock_mtime
 
       - name: MTIME DEBUG B1a
-          gstat --format='%.Y' ${{ github.workspace }}/src/favicons/favicon-4096x4096.png ${{ github.workspace }}/node_modules/cache-loader/dist/cjs.js ${{ github.workspace }}/node_modules/favicons-webpack-plugin/src/loader.js
+        run: gstat --format='%.Y' ${{ github.workspace }}/src/favicons/favicon-4096x4096.png ${{ github.workspace }}/node_modules/cache-loader/dist/cjs.js ${{ github.workspace }}/node_modules/favicons-webpack-plugin/src/loader.js
 
       - name: Build
         run: npm run build
@@ -77,12 +75,10 @@ jobs:
           NODE_ENV: production
 
       - name: MTIME DEBUG A1a
-        run: |
-          ls -la ${{ github.workspace }}/.favicons-cache
+        run: ls -la ${{ github.workspace }}/.favicons-cache
 
       - name: MTIME DEBUG A1b
-        run: |
-          cut ${{ github.workspace }}/.favicons-cache/* -b 1-2048
+        run: cut ${{ github.workspace }}/.favicons-cache/* -b 1-2048
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
