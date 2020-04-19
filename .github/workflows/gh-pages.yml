@@ -55,11 +55,24 @@ jobs:
       # determine whether it should preserve or invalidate its cache.
       # https://github.com/webpack/webpack/issues/10707#issuecomment-613245056
 
+      - name: DEBUG CHANGE MTIME OF GIT FILES
+        run: |
+          git ls-tree -r --name-only HEAD | while read filename; do
+            echo "$(git log -1 --pretty="format:%ad" --date=raw $filename)" "$filename"
+            echo "touch -mt" "$(git log -1 --pretty="format:%ad" --date=format:%Y%m%d%H%M.%S $filename)" "$filename"
+          done
+
       - name: Change mtime of git managed file to respective their last commit time
         run: |
           git ls-tree -r --name-only HEAD | while read filename; do
-            touch -amt "$(git log -1 --pretty="format:%ad" --date=format:%Y%m%d%H%M.%S $filename)" "$filename"
+            touch -mt "$(git log -1 --pretty="format:%ad" --date=format:%Y%m%d%H%M.%S $filename)" "$filename"
           done
+
+      - name: DEBUG CHANGE MTIME OF PACKAGE LOCK
+        run: |
+          echo "$(git log -1 --pretty="format:%ad" --date=raw package-lock.json)"
+          package_lock_mtime=$(git log -1 --pretty="format:%ad" --date=format:%Y%m%d%H%M.%S package-lock.json)
+          echo "${package_lock_mtime}"
 
       - name: Change mtime of files under node_modules to last commit time of package-lock.json
         run: |
