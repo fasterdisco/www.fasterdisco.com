@@ -1,5 +1,6 @@
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const FaviconsWebpackPlugin = require('favicons-webpack-plugin');
+const FileManagerPlugin = require('filemanager-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const HtmlWebpackTagsPlugin = require('html-webpack-tags-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
@@ -16,8 +17,10 @@ const fasterDiscoColors = {
 const srcPath = path.resolve(__dirname, 'src');
 const buildPath = path.resolve(__dirname, 'build');
 
-module.exports = {
-  mode: process.env.NODE_ENV === 'production' ? 'production' : 'development',
+const isProductionBuild = process.env.NODE_ENV === 'production';
+
+const buildConfig = {
+  mode: isProductionBuild ? 'production' : 'development',
 
   entry: path.resolve(srcPath, 'index.js'),
   output: {
@@ -86,3 +89,21 @@ module.exports = {
     ],
   },
 };
+
+if (isProductionBuild) {
+  buildConfig.plugins.push(
+    // https://github.com/gregnb/filemanager-webpack-plugin#usage
+    new FileManagerPlugin({
+      onEnd: {
+        copy: [
+          {
+            source: path.resolve(buildPath, 'favicons', 'favicon.ico'),
+            destination: buildPath,
+          },
+        ],
+      },
+    })
+  );
+}
+
+module.exports = buildConfig;
