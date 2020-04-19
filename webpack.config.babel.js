@@ -1,18 +1,15 @@
-const CopyWebpackPlugin = require('copy-webpack-plugin');
-const FaviconsWebpackPlugin = require('favicons-webpack-plugin');
-const FileManagerPlugin = require('filemanager-webpack-plugin');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const HtmlWebpackTagsPlugin = require('html-webpack-tags-plugin');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const path = require('path');
+// This configuration file having a name ending witg '.babel.js',
+// it is loaded by webpack to be interpreted through Babel transpilation.
+// This only works if @babel/register is an explicit project dependency.
 
-const fasterDiscoColors = {
-  white: '#fdfdfd',
-  yellow: '#fdfd00',
-  purple: '#831069',
-  purplePink: '#b0247b',
-  pink: '#e2388e',
-};
+import CopyWebpackPlugin from 'copy-webpack-plugin';
+import FaviconsWebpackPlugin from 'favicons-webpack-plugin';
+import FileManagerPlugin from 'filemanager-webpack-plugin';
+import HtmlWebpackPlugin from 'html-webpack-plugin';
+import HtmlWebpackTagsPlugin from 'html-webpack-tags-plugin';
+import MiniCssExtractPlugin from 'mini-css-extract-plugin';
+import path from 'path';
+import fasterDiscoColors from './src/lib/faster-disco-colors';
 
 const srcPath = path.resolve(__dirname, 'src');
 const buildPath = path.resolve(__dirname, 'build');
