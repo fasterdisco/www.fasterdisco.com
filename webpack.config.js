@@ -3,6 +3,7 @@ const FaviconsWebpackPlugin = require('favicons-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const HtmlWebpackTagsPlugin = require('html-webpack-tags-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const path = require('path');
 
 const fasterDiscoColors = {
   white: '#fdfdfd',
@@ -12,22 +13,27 @@ const fasterDiscoColors = {
   pink: '#e2388e',
 };
 
+const srcPath = path.resolve(__dirname, 'src');
+const buildPath = path.resolve(__dirname, 'build');
+
 module.exports = {
   mode: process.env.NODE_ENV === 'production' ? 'production' : 'development',
 
-  entry: `${__dirname}/src/index.js`,
+  entry: path.resolve(srcPath, 'index.js'),
   output: {
-    path: `${__dirname}/build`,
+    path: buildPath,
     filename: 'index.js',
   },
 
   plugins: [
     // https://webpack.js.org/plugins/copy-webpack-plugin/
-    new CopyWebpackPlugin([{ from: 'src/static', to: 'static/' }]),
+    new CopyWebpackPlugin([
+      { from: path.resolve(srcPath, 'static'), to: 'static' },
+    ]),
 
     // https://github.com/jantimon/html-webpack-plugin#options
     new HtmlWebpackPlugin({
-      template: 'src/index.html',
+      template: path.resolve(srcPath, 'index.html'),
       scriptLoading: 'defer',
       hash: true,
     }),
@@ -49,12 +55,12 @@ module.exports = {
     // https://github.com/jantimon/favicons-webpack-plugin#advanced-usage
     new FaviconsWebpackPlugin({
       // Define source image
-      logo: `${__dirname}/src/favicon-4096x4096.png`,
+      logo: path.resolve(srcPath, 'favicons', 'favicon-4096x4096.png'),
 
       // Enable caching and specify the path to store cached data
-      cache: `${__dirname}/.favicons-cache`,
+      cache: path.resolve(__dirname, '.favicons-cache'),
 
-      prefix: 'favicons/',
+      prefix: 'favicons',
 
       // Configure favicons
       // https://github.com/itgalaxy/favicons#usage
