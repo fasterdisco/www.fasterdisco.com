@@ -10,6 +10,7 @@ import HtmlWebpackTagsPlugin from 'html-webpack-tags-plugin';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import path from 'path';
 import fasterDiscoColors from './src/lib/faster-disco-colors';
+// const InlineChunkHtmlPlugin = require('react-dev-utils/InlineChunkHtmlPlugin');
 
 const srcPath = path.resolve(__dirname, 'src');
 const buildPath = path.resolve(__dirname, 'build');
@@ -87,6 +88,13 @@ const buildConfig = {
       {
         test: /\.css$/i,
         use: [MiniCssExtractPlugin.loader, 'css-loader'],
+      },
+
+      {
+        test: /\.m?js$/,
+        use: {
+          loader: 'babel-loader',
+        },
       },
     ],
   },
