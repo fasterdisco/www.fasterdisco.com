@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="fr" prefix="og: http://ogp.me/ns#">
   <!-- https://htmlhead.dev/ -->
   <head>
     <meta charset="utf-8" />
@@ -9,27 +9,42 @@
     <meta name="description" content="Disco is not dead." />
     <meta name="keywords" content="disco,faster" />
 
+    <!-- Microsoft Internet Explorer: Force IE 8/9/10 to use its latest rendering engine -->
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+
+    <!-- Load Google Fonts with resource preconnect hint -->
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css?family=Paytone+One&amp;text=Faster%20Disco&amp;display=block"
+      rel="stylesheet"
+    />
+
+    <!-- Disable display of sitelinks searchbox in Google Search
+         https://developers.google.com/search/docs/data-types/sitelinks-searchbox#prevent-sitelinks-search-box -->
+    <meta name="google" content="nositelinkssearchbox" />
+    <!-- Disable Google-provided translations of the document
+         https://support.google.com/webmasters/answer/79812 -->
+    <meta name="google" content="notranslate" />
+
+    <!-- Twitter Cards
+         https://developer.twitter.com/en/docs/tweets/optimize-with-cards/guides/getting-started -->
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="@faster_disco" />
+    <meta name="twitter:title" content="Faster Disco" />
+    <meta name="twitter:description" content="Disco is not dead." />
+
+    <!-- Open Graph metadata
+         https://ogp.me/#metadata
+         An additional "og:image" property is injected at build time by html-webpack-tags-plugin -->
     <meta property="og:title" content="Faster Disco" />
     <meta property="og:description" content="Disco is not dead." />
     <meta property="og:locale" content="fr_FR" />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://www.fasterdisco.com/" />
 
-    <meta name="twitter:card" content="summary" />
-    <meta name="twitter:site" content="@faster_disco" />
-    <meta name="twitter:title" content="Faster Disco" />
-    <meta name="twitter:description" content="Disco is not dead." />
-
-    <!-- Microsoft Internet Explorer: Force IE 8/9/10 to use its latest rendering engine -->
-    <meta http-equiv="x-ua-compatible" content="ie=edge" />
-
-    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin />
-    <link rel="dns-prefetch" href="https://fonts.gstatic.com/" />
-    <link
-      href="https://fonts.googleapis.com/css?family=Paytone+One&amp;text=Faster%20Disco&amp;display=block"
-      rel="stylesheet"
-    />
+    <!-- Tags for favicons and web application themes and m are injected at build time by favicons-webpack-plugin -->
   </head>
+
   <body>
     <canvas class="fasterdisco-canvas" id="plasma" width="192" height="192"></canvas>
     <header class="fasterdisco-hero-header">
