@@ -25,15 +25,10 @@ const buildConfig = {
   mode: isProductionBuild ? 'production' : 'development',
   devtool: isProductionBuild ? 'source-map' : false,
 
-  entry: {
-    index: [
-      path.resolve(srcPath, 'index.js'),
-      path.resolve(srcPath, 'index.scss'),
-    ],
-  },
+  entry: { index: path.resolve(srcPath, 'index.js') },
   output: {
     path: buildPath,
-    filename: '[name].js',
+    filename: '[name].bundle.js',
   },
 
   plugins: [
@@ -64,7 +59,7 @@ const buildConfig = {
 
     // https://webpack.js.org/plugins/mini-css-extract-plugin/
     new MiniCssExtractPlugin({
-      filename: '[name].css',
+      filename: '[name].bundle.css',
     }),
 
     // https://github.com/jantimon/favicons-webpack-plugin#advanced-usage
@@ -95,7 +90,7 @@ const buildConfig = {
   module: {
     rules: [
       {
-        test: /\.scss$/,
+        test: /\.s?css$/,
         use: [
           {
             loader: MiniCssExtractPlugin.loader,
@@ -104,6 +99,7 @@ const buildConfig = {
             },
           },
           'css-loader',
+          'postcss-loader',
           'sass-loader',
         ],
       },
