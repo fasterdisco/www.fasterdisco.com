@@ -37,11 +37,13 @@ const buildConfig = {
   },
 
   plugins: [
+    // Copy all static assets
     // https://webpack.js.org/plugins/copy-webpack-plugin/
     new CopyWebpackPlugin([
       { from: path.resolve(srcPath, 'static'), to: 'static' },
     ]),
 
+    // Inject JavaScript bundle in a deferred <script> tag in built index.html document
     // https://github.com/jantimon/html-webpack-plugin#options
     new HtmlWebpackPlugin({
       template: path.resolve(srcPath, 'index.template.html'),
@@ -59,6 +61,7 @@ const buildConfig = {
     // https://github.com/Runjuu/html-inline-css-webpack-plugin#config
     new HTMLInlineCSSWebpackPlugin(),
 
+    // Inject "og:image" Open Graph property meta tag in built index.html document
     // https://github.com/jharris4/html-webpack-tags-plugin
     new HtmlWebpackTagsPlugin({
       metas: [
@@ -72,6 +75,7 @@ const buildConfig = {
       ],
     }),
 
+    // Generate favicons and inject corresponding tags in built index.html document
     // https://github.com/jantimon/favicons-webpack-plugin#advanced-usage
     new FaviconsWebpackPlugin({
       // Define source image
