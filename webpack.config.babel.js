@@ -25,10 +25,15 @@ const buildConfig = {
   mode: isProductionBuild ? 'production' : 'development',
   devtool: isProductionBuild ? 'source-map' : false,
 
-  entry: path.resolve(srcPath, 'index.js'),
+  entry: {
+    index: [
+      path.resolve(srcPath, 'index.js'),
+      path.resolve(srcPath, 'index.css'),
+    ],
+  },
   output: {
     path: buildPath,
-    filename: 'index.js',
+    filename: '[name].js',
   },
 
   plugins: [
@@ -39,7 +44,7 @@ const buildConfig = {
 
     // https://github.com/jantimon/html-webpack-plugin#options
     new HtmlWebpackPlugin({
-      template: path.resolve(srcPath, 'index.html'),
+      template: path.resolve(srcPath, 'index.template.html'),
       scriptLoading: 'defer',
       hash: true,
     }),
@@ -57,7 +62,9 @@ const buildConfig = {
       ],
     }),
 
-    new MiniCssExtractPlugin(),
+    new MiniCssExtractPlugin({
+      filename: '[name].css',
+    }),
 
     // https://github.com/jantimon/favicons-webpack-plugin#advanced-usage
     new FaviconsWebpackPlugin({
