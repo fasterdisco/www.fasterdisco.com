@@ -50,6 +50,5 @@
   },
   "browserslist": [
     "defaults"
-  ],
-  "sideEffects": false
+  ]
 }
