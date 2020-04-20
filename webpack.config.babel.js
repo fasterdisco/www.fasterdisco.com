@@ -28,7 +28,7 @@ const buildConfig = {
   entry: {
     index: [
       path.resolve(srcPath, 'index.js'),
-      path.resolve(srcPath, 'index.css'),
+      path.resolve(srcPath, 'index.scss'),
     ],
   },
   output: {
@@ -95,8 +95,17 @@ const buildConfig = {
   module: {
     rules: [
       {
-        test: /\.css$/i,
-        use: [MiniCssExtractPlugin.loader, 'css-loader'],
+        test: /\.scss$/,
+        use: [
+          {
+            loader: MiniCssExtractPlugin.loader,
+            options: {
+              hmr: !isProductionBuild,
+            },
+          },
+          'css-loader',
+          'sass-loader',
+        ],
       },
 
       {
