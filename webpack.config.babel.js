@@ -62,6 +62,7 @@ const buildConfig = {
       ],
     }),
 
+    // https://webpack.js.org/plugins/mini-css-extract-plugin/
     new MiniCssExtractPlugin({
       filename: '[name].css',
     }),
