@@ -25,7 +25,12 @@ const buildConfig = {
   mode: isProductionBuild ? 'production' : 'development',
   devtool: isProductionBuild ? 'source-map' : false,
 
-  entry: { index: path.resolve(srcPath, 'index.js') },
+  entry: {
+    index: [
+      path.resolve(srcPath, 'index-plasma.js'),
+      path.resolve(srcPath, 'index-styles.js'),
+    ],
+  },
   output: {
     path: buildPath,
     filename: '[name].bundle.js',
