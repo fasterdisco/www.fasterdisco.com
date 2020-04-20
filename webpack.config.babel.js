@@ -23,6 +23,7 @@ const publicOrigin = isProductionBuild
 
 const buildConfig = {
   mode: isProductionBuild ? 'production' : 'development',
+  devtool: isProductionBuild ? 'source-map' : false,
 
   entry: path.resolve(srcPath, 'index.js'),
   output: {
