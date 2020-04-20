@@ -5,12 +5,12 @@
 import CopyWebpackPlugin from 'copy-webpack-plugin';
 import FaviconsWebpackPlugin from 'favicons-webpack-plugin';
 import FileManagerPlugin from 'filemanager-webpack-plugin';
+import HTMLInlineCSSWebpackPlugin from 'html-inline-css-webpack-plugin';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 import HtmlWebpackTagsPlugin from 'html-webpack-tags-plugin';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import path from 'path';
 import fasterDiscoColors from './src/lib/faster-disco-colors';
-// const InlineChunkHtmlPlugin = require('react-dev-utils/InlineChunkHtmlPlugin');
 
 const srcPath = path.resolve(__dirname, 'src');
 const buildPath = path.resolve(__dirname, 'build');
@@ -49,6 +49,16 @@ const buildConfig = {
       hash: true,
     }),
 
+    // Extract CSS dependencies to their own asset
+    // https://webpack.js.org/plugins/mini-css-extract-plugin/
+    new MiniCssExtractPlugin({
+      filename: '[name].bundle.css',
+    }),
+
+    // Inline extracted CSS dependencies in built index.html document
+    // https://github.com/Runjuu/html-inline-css-webpack-plugin#config
+    new HTMLInlineCSSWebpackPlugin(),
+
     // https://github.com/jharris4/html-webpack-tags-plugin
     new HtmlWebpackTagsPlugin({
       metas: [
@@ -60,11 +70,6 @@ const buildConfig = {
           },
         },
       ],
-    }),
-
-    // https://webpack.js.org/plugins/mini-css-extract-plugin/
-    new MiniCssExtractPlugin({
-      filename: '[name].bundle.css',
     }),
 
     // https://github.com/jantimon/favicons-webpack-plugin#advanced-usage
