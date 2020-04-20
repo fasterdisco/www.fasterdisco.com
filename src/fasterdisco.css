@@ -25,6 +25,7 @@ body {
 .fasterdisco-hero-header-h1 {
   animation: opaque-then-fade-in 2s;
   color: #fdfde8;
+  font-display: block;
   font-family: 'Paytone One', sans-serif;
   font-size: 16vw;
   letter-spacing: -0.05em;
