@@ -2,6 +2,8 @@ module.exports = {
   // https://eslint.org/docs/user-guide/configuring#specifying-environments
   env: {
     // Enable support of all ECMAScript 2020 globals
+    // and automatically sets `parserOption.ecmaVersion` to 11
+    // to specify usage of ECMAScript syntax version 2020
     es2020: true,
     // Enable support of Node.js global variables and Node.js scoping
     node: true,
@@ -9,8 +11,6 @@ module.exports = {
 
   // https://eslint.org/docs/user-guide/configuring#specifying-parser-options
   parserOptions: {
-    // Specify usage of ECMAScript syntax version 2020 (same as 11)
-    ecmaVersion: 2020,
     // Specify that code is in ECMAScript modules
     sourceType: 'module',
   },
