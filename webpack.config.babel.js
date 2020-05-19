@@ -2,7 +2,7 @@
 // it is loaded by webpack to be interpreted through Babel transpilation.
 // This only works if @babel/register is an explicit project dependency.
 
-import CopyWebpackPlugin from 'copy-webpack-plugin';
+import CopyPlugin from 'copy-webpack-plugin';
 import FaviconsWebpackPlugin from 'favicons-webpack-plugin';
 import FileManagerPlugin from 'filemanager-webpack-plugin';
 import HTMLInlineCSSWebpackPlugin from 'html-inline-css-webpack-plugin';
@@ -39,9 +39,9 @@ const buildConfig = {
   plugins: [
     // Copy all static assets
     // https://webpack.js.org/plugins/copy-webpack-plugin/
-    new CopyWebpackPlugin([
-      { from: path.resolve(srcPath, 'static'), to: 'static' },
-    ]),
+    new CopyPlugin({
+      patterns: [{ from: path.resolve(srcPath, 'static'), to: 'static' }],
+    }),
 
     // Inject JavaScript bundle in a deferred <script> tag in built index.html document
     // https://github.com/jantimon/html-webpack-plugin#options
