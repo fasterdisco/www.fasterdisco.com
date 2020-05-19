@@ -63,8 +63,9 @@ function drawPlasmaFrame(context) {
 function initializeContext(canvasId) {
   const canvas = document.getElementById(canvasId);
   // Setting the `alpha` 2d context attribute to false was an attempt to
-  // achieve faster performance. Besides slightly different behavior on
-  // various browsers (white background in Chrome, black background in
+  // achieve faster performance. In reality, besides the observation that
+  // setting this value does *something* with slightly different behaviors
+  // on various browsers (white background in Chrome, black background in
   // Firefox / Safari), there is no evidence that it actually provides
   // any benefit as we’re bulk writing binary data.
   // It is mostly kept as a placebo.
