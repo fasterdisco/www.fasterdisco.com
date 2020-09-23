@@ -22,29 +22,28 @@ jobs:
       - name: Setup Node.js environment
         uses: actions/setup-node@v1
         with:
-          node-version: 12.x
+          node-version: 14.x
 
       # https://github.com/actions/cache#usage
+      # https://github.com/actions/cache/blob/main/examples.md#node---npm
       - name: Cache NPM modules
-        uses: actions/cache@v1
+        uses: actions/cache@v2
         env:
           cache-name: node-modules-cache
         with:
           path: ~/.npm
-          key: ${{ runner.os }}-deploy-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
+          key: ${{ runner.os }}-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
-            ${{ runner.os }}-deploy-${{ env.cache-name }}-
-            ${{ runner.os }}-deploy-
-            ${{ runner.os }}-
+            ${{ runner.os }}-${{ env.cache-name }}-
 
       # https://github.com/actions/cache#usage
       - name: Cache favicons build
-        uses: actions/cache@v1
+        uses: actions/cache@v2
         env:
           cache-name: favicons-webpack-plugin-cache
         with:
           path: ${{ github.workspace }}/.favicons-webpack-plugin-cache
-          # It is expected that there is no exact cache match for a key named
+          # It is expected that there never is an exact cache match for a key named
           # 'deploy-favicons-webpack-plugin-cache-' (without a GitHub SHA).
           # Rather, the most recently created cache with a key prefixed as such
           # is expected to be restored.
