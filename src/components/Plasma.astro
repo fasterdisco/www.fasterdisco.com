@@ -1,0 +1,20 @@
+---
+---
+
+<canvas id="fasterdisco-plasma-canvas" width="192" height="192"></canvas>
+
+<style lang="scss">
+    #fasterdisco-plasma-canvas {
+        position: fixed;
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        height: 100%;
+    }
+</style>
+
+<script>
+    import { drawAnimatedPlasma } from '../lib/plasma';
+
+    drawAnimatedPlasma('fasterdisco-plasma-canvas');
+</script>

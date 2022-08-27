@@ -1,0 +1,70 @@
+---
+const { description, title } = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="en" prefix="og: http://ogp.me/ns#">
+    <!-- https://htmlhead.dev/ -->
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="generator" content={Astro.generator} />
+
+        <title>{title}</title>
+        <meta name="description" content={description} />
+        <meta name="keywords" content="disco,faster" />
+
+        <!-- Microsoft Internet Explorer: Force IE 8/9/10 to use its latest rendering engine -->
+        <meta http-equiv="x-ua-compatible" content="ie=edge" />
+
+        <!-- Load Google Fonts with resource preconnect hint -->
+        <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css?family=Paytone+One&text=Faster%20Disco&display=block"
+            rel="stylesheet"
+        />
+
+        <!-- Disable display of sitelinks searchbox in Google Search
+             https://developers.google.com/search/docs/data-types/sitelinks-searchbox#prevent-sitelinks-search-box -->
+        <meta name="google" content="nositelinkssearchbox" />
+        <!-- Disable Google-provided translations of the document
+            https://support.google.com/webmasters/answer/79812 -->
+        <meta name="google" content="notranslate" />
+
+        <!-- Twitter Cards
+             https://developer.twitter.com/en/docs/tweets/optimize-with-cards/guides/getting-started -->
+        <meta name="twitter:card" content="summary" />
+        <meta name="twitter:site" content="@faster_disco" />
+        <meta name="twitter:title" content="Faster Disco" />
+        <meta name="twitter:description" content={description} />
+
+        <!-- Open Graph metadata
+         https://ogp.me/#metadata
+         An additional "og:image" property is injected at build time by html-webpack-tags-plugin -->
+        <meta property="og:title" content="Faster Disco" />
+        <meta property="og:description" content={description} />
+        <meta property="og:locale" content="en_US" />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://www.fasterdisco.com/" />
+
+        <!-- Tags for favicons and web application themes and manifests are injected at build time by favicons-webpack-plugin -->
+    </head>
+
+    <body>
+        <slot />
+        <style lang="scss">
+            html,
+            body {
+                background: #400838;
+                height: 100%;
+                margin: 0;
+                padding: 0;
+                width: 100%;
+            }
+
+            body {
+                position: relative;
+            }
+        </style>
+    </body>
+</html>
