@@ -1,6 +1,6 @@
 # https://docs.astro.build/en/guides/deploy/github/
 
-name: Github Pages Astro CI
+name: Deploy to GitHub Pages
 
 on:
     # Trigger the workflow every time you push to the `main` branch
