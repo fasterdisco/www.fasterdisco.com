@@ -25,22 +25,22 @@ const { description, title } = Astro.props;
         />
 
         <!-- Disable display of sitelinks searchbox in Google Search
-             https://developers.google.com/search/docs/data-types/sitelinks-searchbox#prevent-sitelinks-search-box -->
+            https://developers.google.com/search/docs/data-types/sitelinks-searchbox#prevent-sitelinks-search-box -->
         <meta name="google" content="nositelinkssearchbox" />
         <!-- Disable Google-provided translations of the document
             https://support.google.com/webmasters/answer/79812 -->
         <meta name="google" content="notranslate" />
 
         <!-- Twitter Cards
-             https://developer.twitter.com/en/docs/tweets/optimize-with-cards/guides/getting-started -->
+            https://developer.twitter.com/en/docs/tweets/optimize-with-cards/guides/getting-started -->
         <meta name="twitter:card" content="summary" />
         <meta name="twitter:site" content="@faster_disco" />
         <meta name="twitter:title" content="Faster Disco" />
         <meta name="twitter:description" content={description} />
 
         <!-- Open Graph metadata
-         https://ogp.me/#metadata
-         An additional "og:image" property is injected at build time by html-webpack-tags-plugin -->
+            https://ogp.me/#metadata
+            An additional "og:image" property is injected at build time by html-webpack-tags-plugin -->
         <meta property="og:title" content="Faster Disco" />
         <meta property="og:description" content={description} />
         <meta property="og:locale" content="en_US" />
